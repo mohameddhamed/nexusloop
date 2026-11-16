@@ -1,0 +1,12 @@
+# Sanitizer Flags Configuration for NexusLoop
+function(nexus_enable_sanitizers target_name)
+    if(ENABLE_ASAN)
+        message(STATUS "Enabling AddressSanitizer (ASan) & UBSan for ${target_name}")
+        target_compile_options(${target_name} PRIVATE -fsanitize=address,undefined -fno-omit-frame-pointer)
+        target_link_options(${target_name} PRIVATE -fsanitize=address,undefined)
+    elseif(ENABLE_TSAN)
+        message(STATUS "Enabling ThreadSanitizer (TSan) for ${target_name}")
+        target_compile_options(${target_name} PRIVATE -fsanitize=thread -fno-omit-frame-pointer)
+        target_link_options(${target_name} PRIVATE -fsanitize=thread)
+    endif()
+endfunction()

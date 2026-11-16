@@ -1,0 +1,19 @@
+# Build and binary artifacts
+bin/
+obj/
+build/
+*.o
+*.a
+*.so
+*.dylib
+
+# IDE & Editor artifacts
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+
+# Test & Benchmark outputs
+*.log
+*.perf
