@@ -17,6 +17,7 @@ void AllocationGuard::record_violation() noexcept {
 } // namespace nexus::memory
 
 // Global new / delete overrides
+#if !defined(__SANITIZE_THREAD__) && !(defined(__has_feature) && __has_feature(thread_sanitizer))
 void* operator new(std::size_t size) {
     if (nexus::memory::AllocationGuard::is_trapping()) [[unlikely]] {
         nexus::memory::AllocationGuard::record_violation();
@@ -76,3 +77,4 @@ void operator delete[](void* ptr, std::size_t) noexcept {
     }
     std::free(ptr);
 }
+#endif

@@ -36,11 +36,11 @@ private:
     std::vector<int> registered_sockets_;
 
 #if defined(__linux__)
-    struct io_uring_params params_{};
-    void* sq_ptr_{nullptr};
-    void* cq_ptr_{nullptr};
-    std::size_t sq_mmap_size_{0};
-    std::size_t cq_mmap_size_{0};
+    [[maybe_unused]] struct io_uring_params params_{};
+    [[maybe_unused]] void* sq_ptr_{nullptr};
+    [[maybe_unused]] void* cq_ptr_{nullptr};
+    [[maybe_unused]] std::size_t sq_mmap_size_{0};
+    [[maybe_unused]] std::size_t cq_mmap_size_{0};
 #endif
 
     void init_ring();
